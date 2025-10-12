@@ -31,57 +31,148 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 
 ---
 
-## 🔍 Metodología
+## 1. Análisis de Datos Clínicos y Moleculares
 
-1. **Análisis univariado:**  
-   - Evaluación de distribución de variables clínicas y moleculares 📈  
-   - Identificación de **proteínas y genes candidatos** mediante estadística descriptiva y pruebas de significancia 🧫  
+**Objetivo:** Explorar variables clínicas y moleculares de los pacientes, identificando patrones relevantes sin entrar en análisis ómicos complejos.
 
-2. **Análisis multivariado (en progreso):**  
-   - Integración de datos clínicos, transcriptómicos y proteómicos 🔗  
-   - Aplicación de **PLS (Partial Least Squares)** para identificar las proteínas más relevantes asociadas a los outcomes clínicos y características moleculares ⚡  
+### Variables Analizadas
 
-3. **Procesamiento de datos:**  
-   - **Python:** pandas, NumPy, Matplotlib, Seaborn 🐍  
-   - **R:** análisis multivariado y PLS 📊
+| Variable               | Tipo/Valores relevantes |
+|------------------------|------------------------|
+| years_to_birth         | numérico               |
+| gender                 | categórico             |
+| histological_type      | categórico             |
+| race                   | categórico             |
+| ethnicity              | categórico             |
+| radiation_therapy      | categórico             |
+| Grade                  | II-IV                  |
+| Mutation.Count         | numérico               |
+| Percent.aneuploidy     | numérico               |
+| IDH.status             | categórico             |
+| outcome                | dicotómico             |
 
----
+### Conclusiones Parciales
 
-## 🏷 Resultados preliminares
-
-### Análisis univariado
-
-- **Proteínas candidatas identificadas:** 7 🧪  
-- **Genes candidatos identificados:** 2 🧬  
-
-### Análisis multivariado (PLS)
-
-- Se identificaron **68 proteínas con importancia elevada (VIP > 1.0)** 💎, que podrían ser relevantes para caracterizar firmas proteómicas asociadas a gliomas y supervivencia de pacientes.  
-
-> Estos resultados representan un primer conjunto de biomarcadores potenciales y se actualizarán conforme avance el análisis multivariado 🔄
+1. Supervivencia del 100% en pacientes con oligodendroglioma.  
+2. Mortalidad del 100% en pacientes con astrocytoma y oligoastrocytoma.  
+3. Radioterapia asociada a mayor mortalidad, correlacionada con tumores de grado avanzado.  
 
 ---
 
-## 📋 Conclusiones clínicas preliminares
+## 2. Análisis Univariado de Datos Moleculares
 
-- **Supervivencia del 100%** en pacientes con **oligodendroglioma** ✅  
-- **Mortalidad del 100%** en pacientes con **astrocytoma y oligoastrocytoma** ❌  
-- Pacientes que recibieron **radioterapia** mostraron mayor mortalidad relativa ⚠️, probablemente porque correspondían a casos con **grado histológico más avanzado (G3)**  
+**Objetivo:** Identificar proteínas y genes cuya expresión se asocie significativamente con el outcome clínico mediante análisis univariado.
 
-> Estos hallazgos clínicos proporcionan un contexto para interpretar los resultados moleculares y orientar análisis posteriores 🧠💡
+### Dataset
+
+- Proteómica: 174 proteínas, con imputación y escalado.  
+- Transcriptómica: 145 transcritos, normalizados.
+
+### Metodología
+
+- Análisis univariado con `adj.P.Val < 0.05`  
+- Evaluación de log2 fold change (`logFC`)  
+
+### Resultados Ejemplo
+
+**Proteínas significativas**
+
+| Protein       | adj.P.Val | logFC  |
+|---------------|-----------|--------|
+| Src_pY416_p   | 0.0177    | 7.463  |
+| EGFR_pY1068_p | 0.0037    | 4.844  |
+| p27_p         | 0.00088   | -3.858 |
+
+**Genes significativos**
+
+| Gene.symbol | adj.P.Val | logFC  |
+|------------|-----------|--------|
+| STAT5A     | 3.07e-12  | 0.870  |
+| RPS6KA1    | 5.62e-11  | 0.917  |
+| SYK        | 4.48e-10  | 0.955  |
 
 ---
 
-## 🛠 Tecnologías y Herramientas
+## 3. Análisis Multivariado de Proteómica y Transcriptómica
 
-- **Lenguajes:** Python 🐍, R 📊  
-- **Librerías Python:** pandas, NumPy, Matplotlib, Seaborn, SciPy  
-- **Análisis estadístico:** univariado y multivariado  
-- **Visualización:** gráficos de distribución, heatmaps 🌡️ y correlaciones 🔗  
+**Objetivo:** Integrar datos ómicos usando PLS y calcular VIP para seleccionar biomarcadores potenciales.
+
+### Metodología
+
+- **PLS (Partial Least Squares)** para correlacionar datos ómicos con outcomes clínicos.  
+- **VIP (Variable Importance in Projection):** variables relevantes con VIP > 1.0.
+
+### Resultados Top 10
+
+**Proteínas**
+
+| Rank | Proteína    | VIP   |
+|------|------------|-------|
+| 1    | Syk_p       | 2.047 |
+| 2    | YAP_pS127_p | 1.887 |
+| 3    | AR_p        | 1.840 |
+
+**Genes**
+
+| Rank | Gen       | VIP   |
+|------|-----------|-------|
+| 1    | STAT5A    | 2.327 |
+| 2    | YBX1      | 2.326 |
+| 3    | XRCC1     | 2.197 |
 
 ---
 
-## 👤 Autor
+## 4. Predicción del Estado de Pacientes mediante Machine Learning
 
-**Alexis Gerardo Martínez Rangel**  
-TripleTen Data Analyst Program 🎓
+**Objetivo:** Comparar modelos de ML utilizando biomarcadores univariados y multivariados para predecir el estado clínico y la agresividad tumoral.
+
+### Conjuntos de Biomarcadores
+
+1. Univariado: solo biomarcadores del análisis univariado  
+2. Univariado ampliado: biomarcadores univariados + número de mutaciones + grado histológico  
+3. Multivariado: biomarcadores del análisis multivariado  
+4. Multivariado con PCA (mejor PCA = 55)  
+5. Multivariado VIP > 1.5  
+6. Multivariado VIP > 1.5 + PCA (mejor PCA = 25)
+
+### Modelos Implementados
+
+- K-Nearest Neighbors (KNN)  
+- Regresión Logística  
+- Random Forest  
+
+### Evaluación
+
+- **Métricas:** AUC-ROC, Precisión (Accuracy), Matriz de Confusión  
+- **Mejor modelo:** Regresión Logística con biomarcadores univariados  
+  - AUC-ROC: 0.89  
+  - Precisión: 0.847  
+
+**Matriz de Confusión (threshold optimizado por Youden)**
+
+| Actual \ Predicción | 0  | 1  |
+|--------------------|----|----|
+| 0                  | 29 | 6  |
+| 1                  | 9  | 48  |
+
+---
+
+## Tecnologías y Herramientas
+
+- **Lenguaje:** Python 🐍  
+- **Librerías:** pandas, NumPy, SciPy, scikit-learn, Matplotlib, Seaborn  
+- **Procesamiento:** normalización, escalado, PCA  
+- **Análisis multivariado:** PLS, VIP  
+
+---
+
+## Conclusión General
+
+Este pipeline integral demuestra que:
+
+1. Es posible correlacionar características clínicas y moleculares con outcomes clínicos en gliomas difusos.  
+2. Los biomarcadores ómicos identificados por análisis univariado y multivariado permiten predecir con alta precisión el estado del paciente.  
+3. El modelo más eficiente combina biomarcadores univariados con regresión logística, logrando un **AUC-ROC de 0.89** y **precisión de 0.847**, con menor costo debido al reducido número de biomarcadores.  
+4. La integración futura con datos clínicos tradicionales podría mejorar aún más la capacidad predictiva, facilitando la estratificación de pacientes y el desarrollo de estrategias terapéuticas personalizadas.
+
+
