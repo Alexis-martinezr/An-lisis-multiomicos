@@ -78,4 +78,3 @@ Integración de datos clínicos, transcriptómicos y proteómicos de gliomas dif
 
 ## 👤 Autor
 **Alexis Gerardo Martínez Rangel**  
-TripleTen Data Analyst Program 🎓
