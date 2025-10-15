@@ -1,8 +1,11 @@
-# 🧠 Integración clínica, transcriptómica y proteómica para el análisis de gliomas - Análisis Univariado y Multivariado
+# 🧠 Integración clínica, transcriptómica y proteómica para el análisis de gliomas - Análisis Univariado, Multivariado y Machine Learning
 
-Este proyecto tiene como objetivo explorar la relación entre características clínicas, transcriptómicas y proteómicas en gliomas difusos mediante análisis univariado y multivariado. Se busca identificar genes y proteínas candidatas que puedan actuar como **biomarcadores** o **dianas terapéuticas**, así como correlacionar hallazgos moleculares con información clínica relevante.  
+Este proyecto tiene como objetivo explorar e integrar datos clínicos, transcriptómicos y proteómicos en **gliomas difusos**, con el fin de identificar **biomarcadores** relevantes y desarrollar modelos predictivos del estado clínico del paciente mediante **machine learning**.
 
-> ⚠️ **Estado:** El análisis está en progreso y se actualizará en futuras versiones del proyecto.
+Se aplicaron enfoques **univariados** y **multivariados** para la selección de biomarcadores, además de comparar el desempeño de distintos modelos de clasificación.  
+El propósito general fue determinar si la integración ómica mejora la predicción de **supervivencia** frente a métodos estadísticos convencionales.
+
+> ⚠️ **Estado:** El análisis se encuentra avanzado, pero continúa en mejora y ampliación de resultados.
 
 ---
 
@@ -11,67 +14,60 @@ Este proyecto tiene como objetivo explorar la relación entre características c
 El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Genome Atlas (TCGA)** para gliomas difusos en adultos.
 
 ### Información general:
-- Los **gliomas difusos** representan el 80% de los tumores cerebrales malignos 🧠  
+- Los **gliomas difusos** representan aproximadamente el 80% de los tumores cerebrales malignos 🧠  
 - Clasificación histológica:  
   - **Oligodendroglioma** 🟦  
   - **Oligoastrocytoma** 🟪  
   - **Astrocitoma** 🟥  
   - **Glioblastoma** 🟧  
-- Grado tumoral: II a IV según criterios de la **OMS** ⚖️  
-- La clasificación histopatológica presenta **alta variabilidad intra- e inter-observador** ⚠️, especialmente en tumores de grado II-III  
-- Datos disponibles: **clínicos**, **transcriptómicos** y **proteómicos** 🔬
+- Grado tumoral: II a IV (criterios OMS) ⚖️  
+- Alta **variabilidad histopatológica intra- e inter-observador** ⚠️  
+- Datos disponibles: **clínicos**, **transcriptómicos** y **proteómicos** 🔬  
 
 ---
 
 ## 🧬 Tipos de datos incluidos
 
-- **Datos clínicos:** edad, género, tipo histológico, raza, etnia, terapia de radiación, grado tumoral, recuento de mutaciones, porcentaje de aneuploidía, estado de IDH y outcome  
-- **Proteómica:** valores relativos preprocesados de múltiples proteínas involucradas en señalización y regulación celular ⚛️  
-- **Transcriptómica:** valores crudos de expresión génica (microarrays) 🧪
+- **Datos clínicos:** edad, género, tipo histológico, raza, etnia, radioterapia, grado tumoral, recuento de mutaciones, porcentaje de aneuploidía, estado de IDH y outcome.  
+- **Proteómica:** 174 proteínas normalizadas relacionadas con señalización celular ⚛️  
+- **Transcriptómica:** 145 transcritos normalizados (microarrays) 🧪  
 
 ---
 
 ## 1. Análisis de Datos Clínicos y Moleculares
 
-**Objetivo:** Explorar variables clínicas y moleculares de los pacientes, identificando patrones relevantes sin entrar en análisis ómicos complejos.
+**Objetivo:** Explorar las variables clínicas y moleculares, identificando patrones y asociaciones con el outcome clínico.
 
 ### Variables Analizadas
 
-| Variable               | Tipo/Valores relevantes |
-|------------------------|------------------------|
-| years_to_birth         | numérico               |
-| gender                 | categórico             |
-| histological_type      | categórico             |
-| race                   | categórico             |
-| ethnicity              | categórico             |
-| radiation_therapy      | categórico             |
-| Grade                  | II-IV                  |
-| Mutation.Count         | numérico               |
-| Percent.aneuploidy     | numérico               |
-| IDH.status             | categórico             |
-| outcome                | dicotómico             |
+| Variable           | Tipo / Valores relevantes |
+|--------------------|---------------------------|
+| years_to_birth     | Numérico                  |
+| gender             | Categórico                |
+| histological_type  | Categórico                |
+| radiation_therapy  | Categórico                |
+| Grade              | II–IV                     |
+| Mutation.Count     | Numérico                  |
+| Percent.aneuploidy | Numérico                  |
+| IDH.status         | Categórico                |
+| outcome            | Dicotómico (0 = Vivo / 1 = Muerto) |
 
 ### Conclusiones Parciales
 
-1. Supervivencia del 100% en pacientes con oligodendroglioma.  
-2. Mortalidad del 100% en pacientes con astrocytoma y oligoastrocytoma.  
-3. Radioterapia asociada a mayor mortalidad, correlacionada con tumores de grado avanzado.  
+1. Supervivencia del 100% en pacientes con **oligodendroglioma**.  
+2. Mortalidad del 100% en pacientes con **astrocitoma** y **oligoastrocytoma**.  
+3. La **radioterapia** se asocia a mayor mortalidad, reflejando su uso en tumores más agresivos.  
 
 ---
 
-## 2. Análisis Univariado de Datos Moleculares
+## 2. Análisis Univariado de Datos Ómicos
 
-**Objetivo:** Identificar proteínas y genes cuya expresión se asocie significativamente con el outcome clínico mediante análisis univariado.
-
-### Dataset
-
-- Proteómica: 174 proteínas, con imputación y escalado.  
-- Transcriptómica: 145 transcritos, normalizados.
+**Objetivo:** Identificar proteínas y genes cuya expresión se asocie significativamente con el outcome clínico individualmente.
 
 ### Metodología
 
-- Análisis univariado con `adj.P.Val < 0.05`  
-- Evaluación de log2 fold change (`logFC`)  
+- Evaluación de significancia con `adj.P.Val < 0.05`  
+- Estimación de magnitud del cambio mediante `log2 Fold Change (logFC)`  
 
 ### Resultados Ejemplo
 
@@ -86,31 +82,31 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 **Genes significativos**
 
 | Gene.symbol | adj.P.Val | logFC  |
-|------------|-----------|--------|
-| STAT5A     | 3.07e-12  | 0.870  |
-| RPS6KA1    | 5.62e-11  | 0.917  |
-| SYK        | 4.48e-10  | 0.955  |
+|--------------|-----------|--------|
+| STAT5A       | 3.07e-12  | 0.870  |
+| RPS6KA1      | 5.62e-11  | 0.917  |
+| SYK          | 4.48e-10  | 0.955  |
 
 ---
 
-## 3. Análisis Multivariado de Proteómica y Transcriptómica
+## 3. Análisis Multivariado (Integración Proteómica y Transcriptómica)
 
-**Objetivo:** Integrar datos ómicos usando PLS y calcular VIP para seleccionar biomarcadores potenciales.
+**Objetivo:** Integrar los datos ómicos usando **Partial Least Squares (PLS)** y calcular los valores **VIP (Variable Importance in Projection)** para identificar variables relevantes.
 
 ### Metodología
 
-- **PLS (Partial Least Squares)** para correlacionar datos ómicos con outcomes clínicos.  
-- **VIP (Variable Importance in Projection):** variables relevantes con VIP > 1.0.
+- PLS aplicado a datos normalizados y combinados (proteómica + transcriptómica)  
+- Selección de biomarcadores con **VIP > 1.0**  
 
-### Resultados Top 10
+### Top 10 Biomarcadores
 
 **Proteínas**
 
 | Rank | Proteína    | VIP   |
-|------|------------|-------|
-| 1    | Syk_p       | 2.047 |
-| 2    | YAP_pS127_p | 1.887 |
-| 3    | AR_p        | 1.840 |
+|------|--------------|-------|
+| 1    | Syk_p        | 2.047 |
+| 2    | YAP_pS127_p  | 1.887 |
+| 3    | AR_p         | 1.840 |
 
 **Genes**
 
@@ -124,55 +120,60 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 
 ## 4. Predicción del Estado de Pacientes mediante Machine Learning
 
-**Objetivo:** Comparar modelos de ML utilizando biomarcadores univariados y multivariados para predecir el estado clínico y la agresividad tumoral.
+**Objetivo:** Predecir el estado clínico (vivo/muerto) de pacientes con gliomas difusos utilizando biomarcadores ómicos y evaluar el poder predictivo de diferentes modelos.
 
 ### Conjuntos de Biomarcadores
 
-1. Univariado: solo biomarcadores del análisis univariado  
-2. Univariado ampliado: biomarcadores univariados + número de mutaciones + grado histológico  
-3. Multivariado: biomarcadores del análisis multivariado  
-4. Multivariado con PCA (mejor PCA = 55)  
-5. Multivariado VIP > 1.5  
-6. Multivariado VIP > 1.5 + PCA (mejor PCA = 25)
+1. **Univariado:** Solo biomarcadores del análisis univariado  
+2. **Univariado ampliado:** Biomarcadores univariados + mutaciones + grado histológico  
+3. **Multivariado:** Biomarcadores del análisis multivariado  
+4. **Multivariado + PCA:** Reducción a 55 componentes principales  
+5. **Multivariado VIP > 1.5:** Selección más estricta  
+6. **VIP > 1.5 + PCA:** Reducción a 25 componentes  
+7. **Modelo reducido (4 biomarcadores):** STAT5A, RPS6KA1, SYK y AR  
 
 ### Modelos Implementados
 
-- K-Nearest Neighbors (KNN)  
-- Regresión Logística  
-- Random Forest  
+- **K-Nearest Neighbors (KNN)**  
+- **Regresión Logística**  
+- **Random Forest**
 
-### Evaluación
+### Evaluación de Modelos
 
-- **Métricas:** AUC-ROC, Precisión (Accuracy), Matriz de Confusión  
-- **Mejor modelo:** Regresión Logística con biomarcadores univariados  
-  - AUC-ROC: 0.89  
-  - Precisión: 0.847  
+| Modelo | Biomarcadores | AUC-ROC | Precisión | Observaciones |
+|--------|----------------|---------|------------|----------------|
+| Regresión Logística | Univariado completo | **0.89** | **0.847** | Mejor desempeño global |
+| Regresión Logística | 4 biomarcadores (STAT5A, RPS6KA1, SYK, AR) | **0.88** | **0.8369** | Precisión comparable al modelo completo |
 
-**Matriz de Confusión (threshold optimizado por Youden)**
+**Matriz de Confusión (Regresión Logística - Modelo Base)**
 
-| Actual \ Predicción | 0  | 1  |
-|--------------------|----|----|
-| 0                  | 29 | 6  |
-| 1                  | 9  | 48  |
+| Actual \ Predicción | 0 | 1 |
+|----------------------|---|---|
+| 0                    | 29| 6 |
+| 1                    | 9 | 48|
+
+👉 Este resultado demuestra que solo **cuatro biomarcadores** bastan para alcanzar una precisión comparable al modelo completo, evidenciando su alto poder predictivo y relevancia biológica.
 
 ---
 
-## Tecnologías y Herramientas
+## 💡 Conclusión General
+
+Este pipeline integral demuestra que:
+
+1. Es posible correlacionar características **clínicas, proteómicas y transcriptómicas** con los outcomes clínicos en gliomas difusos.  
+2. Los biomarcadores identificados mediante **PLS-VIP** y **análisis univariado** tienen alto poder predictivo.  
+3. La **Regresión Logística** basada en biomarcadores univariados ofrece el mejor desempeño (AUC-ROC = 0.89, Precisión = 84.7%).  
+4. Un modelo reducido con solo cuatro biomarcadores (STAT5A, RPS6KA1, SYK y AR) alcanza resultados comparables (AUC-ROC = 0.88, Precisión = 83.69%), demostrando su potencial como **firma molecular pronóstica**.  
+5. La integración futura de estos biomarcadores con **datos clínicos tradicionales** podría mejorar aún más la aplicabilidad del modelo en diagnóstico y seguimiento oncológico.
+
+---
+
+## ⚙️ Tecnologías y Herramientas
 
 - **Lenguaje:** Python 🐍  
 - **Librerías:** pandas, NumPy, SciPy, scikit-learn, Matplotlib, Seaborn  
 - **Procesamiento:** normalización, escalado, PCA  
 - **Análisis multivariado:** PLS, VIP  
-
----
-
-## Conclusión General
-
-Este pipeline integral demuestra que:
-
-1. Es posible correlacionar características clínicas y moleculares con outcomes clínicos en gliomas difusos.  
-2. Los biomarcadores ómicos identificados por análisis univariado y multivariado permiten predecir con alta precisión el estado del paciente.  
-3. El modelo más eficiente combina biomarcadores univariados con regresión logística, logrando un **AUC-ROC de 0.89** y **precisión de 0.847**, con menor costo debido al reducido número de biomarcadores.  
-4. La integración futura con datos clínicos tradicionales podría mejorar aún más la capacidad predictiva, facilitando la estratificación de pacientes y el desarrollo de estrategias terapéuticas personalizadas.
+- **Evaluación estadística:** AUC-ROC, matriz de confusión, precisión  
 
 
