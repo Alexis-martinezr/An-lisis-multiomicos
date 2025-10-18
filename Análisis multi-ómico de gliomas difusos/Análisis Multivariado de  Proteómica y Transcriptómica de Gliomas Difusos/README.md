@@ -20,8 +20,12 @@ Datos preprocesados: normalizados y escalados para análisis multivariado.
 ## Resultados Principales
 
 ### Proteínas relevantes: 46
+### Genes relevantes: 69
 
-Top 10 Proteínas por VIP
+![Gráfico](../Imagenes/Distribución-de-valores-VIP-de-genes-y-proteínas-parte-1_2_3.png)
+
+
+### Top 10 Proteínas por VIP
 | Rank | Proteína    | VIP   |
 |------|------------|-------|
 | 1    | Syk_p       | 2.047 |
@@ -36,9 +40,9 @@ Top 10 Proteínas por VIP
 | 10   | c-Kit_p     | 1.477 |
 
 
-### Genes relevantes: 69
 
-Top 10 Genes por VIP
+
+### Top 10 Genes por VIP
 | Rank | Gen       | VIP   |
 |------|-----------|-------|
 | 1    | STAT5A    | 2.327 |
