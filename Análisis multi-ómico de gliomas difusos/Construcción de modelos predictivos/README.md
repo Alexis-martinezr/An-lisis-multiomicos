@@ -118,6 +118,8 @@ El desempeño se evaluó mediante:
 - **Precisión (accuracy)**  
 - **Matriz de confusión**  
 
+![Gráfico](../Imagenes/Curvas-ROC-primera-parte.png)
+
 **Mejor modelo obtenido (modelo base):**
 
 - **Regresión Logística (análisis univariado completo)**  
@@ -126,16 +128,17 @@ El desempeño se evaluó mediante:
 
 **Matriz de confusión optimizada (criterio de Youden):**
 
-| Actual \ Predicción | 0  | 1  |
-|----------------------|----|----|
-| 0                    | 29 | 6  |
-| 1                    | 9  | 48 |
+![Gráfico](../Imagenes/Matriz-de-Confusión-del-Modelo-de-Regresión-Logística.png)
 
 **Modelo reducido (4 biomarcadores con mayor correlación):**
 
 - **Regresión Logística (STAT5A, RPS6KA1, SYK, AR)**  
-- **AUC-ROC:** 0.88  
+- **AUC-ROC:** 0.88
+
+  ![Gráfico](../Imagenes/ROC-top-4-de-genes.png)
+  
 - **Precisión:** 0.8369  
+  ![Gráfico](../Imagenes/Matriz-de-Confusión-del-Modelo-de-Regresión-Logística-Top4.png)
 
 👉 Este resultado demuestra que **solo cuatro biomarcadores** bastan para alcanzar una **precisión comparable al modelo completo**, evidenciando su **alto poder predictivo y relevancia biológica**.
 
