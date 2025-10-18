@@ -60,21 +60,26 @@ Este subproyecto se centra en la identificación de patrones de coexpresión ent
 | 2       | 0.38             | Vía coordinada y cohesiva                  |
 | 3       | 0.41             | Muchas conexiones fuertes, hub bien conectado |
 
+**Red con máxima centralidad**
+![Gráfico](../Imagenes/network_cluster_3.png)
+
 ### Correlaciones con variables clínicas
 
 - **Cluster 0:** Ligera correlación positiva con oligodendroglioma e IDH mutado; correlación negativa con outcome adverso → asociado a fenotipo favorable.
+![Gráfico](../Imagenes/Heatmap-clin-vs-gen-proteína_0.png)
+
 - **Cluster 1:** Correlación positiva con astrocitoma, número de mutaciones, grado histológico alto, radioterapia y desenlace negativo; correlación negativa con IDH mutado → fenotipo menos favorable.
+![Gráfico](../Imagenes/Heatmap-clin-vs-gen-proteína_1.png)
+
 - **Cluster 2:** Baja correlación con variables clínicas → funciones housekeeping esenciales; ACACB correlaciona negativamente con IDH WT.
+![Gráfico](../Imagenes/Heatmap-clin-vs-gen-proteína_2.png)
+
 - **Cluster 3:** Media correlación con IDH mutado y baja correlación con otras variables; genes como ANXA7 y PEA15 vinculados al estado mutacional de IDH.
+![Gráfico](../Imagenes/Heatmap-clin-vs-gen-proteína_3.png)
 
 ### Matriz de correlación intercluster
 
-|           | Cluster 0 | Cluster 1 | Cluster 2 | Cluster 3 |
-|-----------|-----------|-----------|-----------|-----------|
-| **Cluster 0** | 0.191     | -0.012    | -0.070    | -0.051    |
-| **Cluster 1** | -0.012    | 0.144     | -0.072    | -0.061    |
-| **Cluster 2** | -0.070    | -0.072    | 0.213     | -0.050    |
-| **Cluster 3** | -0.051    | -0.061    | -0.050    | 0.163     |
+![Gráfico](../Imagenes/Correlación-Promedio-entre-Clusters.png)
 
 > Interpretación: Los clusters presentan alta correlación interna (valores en diagonal) y baja correlación intercluster (valores fuera de diagonal), lo que indica independencia funcional entre módulos.
 
@@ -88,6 +93,7 @@ Este subproyecto se centra en la identificación de patrones de coexpresión ent
 | 1       | 90             | KEGG: vías en cáncer, ErbB, PI3K-Akt, senescencia; GO BP: regulación de apoptosis y proliferación; GO MF: unión y actividad de quinasas y fosfatasas |
 | 2       | 50             | KEGG: PI3K-Akt, mTOR, ErbB; GO BP: fosforilación y regulación de proliferación; GO MF: actividad quinasa serina/treonina y reguladores de quinasa |
 | 3       | 55             | KEGG: PI3K-Akt, gastric cancer, colorectal cancer; GO BP: regulación negativa de proliferación y apoptosis; GO MF: unión a quinasas y factores de transcripción |
+
 
 ---
 
