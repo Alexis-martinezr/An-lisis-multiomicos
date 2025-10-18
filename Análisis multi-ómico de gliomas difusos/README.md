@@ -46,7 +46,7 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 | gender             | Categórico                |
 | histological_type  | Categórico                |
 | radiation_therapy  | Categórico                |
-| Grade              | II–IV                     |
+| Grade              | II–III                    |
 | Mutation.Count     | Numérico                  |
 | Percent.aneuploidy | Numérico                  |
 | IDH.status         | Categórico                |
