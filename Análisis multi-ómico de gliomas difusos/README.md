@@ -52,6 +52,26 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 | IDH.status         | Categórico                |
 | outcome            | Dicotómico (0 = Vivo / 1 = Muerto) |
 
+### 📈 Resultados de Pruebas de Hipótesis
+
+| Comparación | Prueba | Estadístico / χ² | p-valor | Interpretación |
+|--------------|--------|------------------|---------|----------------|
+| Mutaciones: vivos vs fallecidos | Mann–Whitney U | 10295.5 | 0.220 | No significativa |
+| Edad: vivos vs fallecidos | Mann–Whitney U | 13125.5 | **0.012** | Fallecidos ligeramente más jóvenes |
+| Grado II vs III | Chi-Cuadrada | 9.65 | **0.0019** | Diferencia significativa |
+| Grado vs tipo histológico | Chi-Cuadrada | 23.36 | **8.4e-06** | Asociación significativa |
+| Radioterapia vs grado | Chi-Cuadrada | 42.98 | **5.5e-11** | Asociada a tumores más agresivos |
+| Radioterapia vs tipo histológico | Chi-Cuadrada | 23.93 | **6.3e-06** | Diferencia significativa |
+| Radioterapia vs supervivencia | Chi-Cuadrada | 13.71 | **0.0002** | Asociada a peor supervivencia |
+| Género vs supervivencia | Chi-Cuadrada | 0.028 | 0.865 | No significativa |
+| Raza vs supervivencia | Chi-Cuadrada | 1.06 | 0.588 | No significativa |
+| Etnia vs supervivencia | Chi-Cuadrada | 0.987 | 0.320 | No significativa |
+| IDH vs supervivencia | Chi-Cuadrada | 8.73 | **0.003** | Asociación significativa |
+| Aneuploidía: vivos vs fallecidos | Mann–Whitney U | 10862.0 | 0.633 | No significativa |
+| Edad vs tipo histológico | ANOVA | 3.29 | **0.038** | Diferencia significativa entre tipos |
+
+🧠 Los resultados sugieren que los pacientes más jóvenes tienden a presentar **gliomas más agresivos** (p < 0.05), y que la mutación en **IDH** se asocia con **mejor pronóstico**.
+
 ### Conclusiones Parciales
 
 1. Supervivencia del 100% en pacientes con **oligodendroglioma**.  
@@ -153,6 +173,29 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
 | 1                    | 9 | 48|
 
 👉 Este resultado demuestra que solo **cuatro biomarcadores** bastan para alcanzar una precisión comparable al modelo completo, evidenciando su alto poder predictivo y relevancia biológica.
+
+---
+
+## 5. 🔎 Análisis de Clusters de Genes y Proteínas
+
+**Objetivo:** Identificar patrones de coexpresión entre genes y proteínas mediante *clustering jerárquico* y análisis de redes.
+
+> ⚠️ Estado: En progreso — el análisis funcional se encuentra en ampliación.
+
+### Metodología
+- Estandarización de datos (z-score)
+- Clustering jerárquico basado en correlaciones
+- Construcción de redes de coexpresión (umbral > 0.5)
+- Análisis funcional con **KEGG, GO y Reactome**
+
+### Resultados Principales
+
+| Cluster | Función predominante | Genes/Proteínas Hub | Correlación promedio |
+|----------|----------------------|---------------------|----------------------|
+| 0 | Reparación de ADN | ATRX, RAD50 | 0.19 |
+| 1 | Señalización de EGFR | EGFR_pY1068_p, GRB2 | 0.22 |
+| 2 | Regulación inmune y fosforilación | SYK, STAT5A | 0.18 |
+| 3 | Apoptosis y transporte mitocondrial | BAX, YBX1 | 0.25 |
 
 ---
 
