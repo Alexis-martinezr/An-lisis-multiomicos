@@ -4,6 +4,7 @@ Este proyecto se centra en el análisis univariado de datos de expresión protei
 
 ⚠️ Estado: Análisis en progreso.
 
+
 ## Dataset
 
 El dataset incluye:
@@ -14,7 +15,7 @@ El dataset incluye:
 
 ## Metodología
 
-Proteómica:
+### **Proteómica:**
 
 - Imputación de datos faltantes
 
@@ -27,28 +28,17 @@ Proteómica:
 Resultados Univariados
 Proteínas Significativas (adj.P.Val < 0.05)
 
-| Protein           | adj.P.Val   | logFC  |
-|------------------|------------|--------|
-| Src_pY416_p       | 0.017681   | 7.463  |
-| EGFR_pY1068_p     | 0.003745   | 4.844  |
-| p27_p             | 0.000876   | -3.858 |
-| HER2_pY1248_p     | 0.009947   | 3.676  |
-| Cyclin_B1_p       | 0.011747   | 3.378  |
-| PRAS40_pT246_p    | 0.009947   | 2.742  |
-| 4E-BP1_pS65_p     | 0.036569   | -1.992 |
+![Gráfico](../Imagenes/Proteínas-diferencialmente-expresadas.png)
 
-Transcriptómica:
+![Gráfico](../Imagenes/Volcano-Plot-Análisis-de-Proteómico.png)
+
+### **Transcriptómica:**
 
 Análisis univariado por cada gen, usando valores ajustados de p (adj.P.Val) y logFC.
 
-| Gene.symbol | adj.P.Val      | logFC  |
-|------------|---------------|--------|
-| STAT5A     | 3.07e-12      | 0.870  |
-| RPS6KA1    | 5.62e-11      | 0.917  |
-| SYK        | 4.48e-10      | 0.955  |
-| AR         | 5.44e-07      | 1.111  |
-| WWTR1      | 3.26e-04      | 0.908  |
-| CAV1       | 2.40e-03      | 1.068  |
+![Gráfico](../Imagenes/Genes-diferencialmente-expresadas.png)
+
+![Gráfico](../Imagenes/Volcano-Plot-Análisis-de-Transcriptómico.png)
 
 Nota: logFC positivo indica sobreexpresión en el grupo de interés; logFC negativo indica subexpresión.
 
