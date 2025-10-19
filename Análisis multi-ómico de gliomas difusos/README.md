@@ -20,7 +20,7 @@ El dataset proviene de **Kaggle**, basado en datos generados por **The Cancer Ge
   - **Oligoastrocytoma** 🟪  
   - **Astrocitoma** 🟥  
   - **Glioblastoma** 🟧  
-- Grado tumoral: II a IV (criterios OMS) ⚖️  
+- Grado tumoral: II a III (criterios OMS) ⚖️  
 - Alta **variabilidad histopatológica intra- e inter-observador** ⚠️  
 - Datos disponibles: **clínicos**, **transcriptómicos** y **proteómicos** 🔬  
 
