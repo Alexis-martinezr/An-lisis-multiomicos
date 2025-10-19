@@ -10,7 +10,7 @@ Este proyecto se centra en la exploración de datos clínicos y moleculares de p
 
 - **Gliomas difusos:** representan el 80% de los tumores cerebrales malignos en adultos.  
 - **Clasificación histológica:** oligodendroglioma, oligoastrocytoma, astrocytoma y glioblastoma.  
-- **Grado tumoral:** II a IV, según criterios histológicos de la WHO.  
+- **Grado tumoral:** II a III, según criterios histológicos de la WHO.  
 - **Variabilidad:** alta variabilidad intra- e inter-observador, especialmente en tumores de grado II-III.  
 - **Origen de los datos:** The Cancer Genome Atlas (TCGA).  
 
